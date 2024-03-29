@@ -1,9 +1,9 @@
 function Header() {
   return (
-    <header className="app-header">
-      <img src="Maze.jpeg" alt="Maze logo" />
-      <h1>The Maze Runner</h1>
-    </header>
+    <>
+      <img src="PacmanLogo.gif" alt="Pacman Logo" />
+      <header className="app-header"></header>
+    </>
   );
 }
 

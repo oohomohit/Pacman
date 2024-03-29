@@ -90,16 +90,6 @@ function GameProvider({ children }) {
         [4, 4],
       ],
     ];
-    const ExtremeData = [
-      [
-        [0, 0],
-        [6, 6],
-      ],
-      [
-        [1, 1],
-        [5, 5],
-      ],
-    ];
 
     const V = [];
 
@@ -108,19 +98,18 @@ function GameProvider({ children }) {
       V.push(row);
     }
     const randomData =
-      difficulty === 4
-        ? EasyData
-        : difficulty === 5
-        ? MediumData
-        : difficulty === 6
-        ? HardData
-        : ExtremeData;
+      difficulty === 4 ? EasyData : difficulty === 5 ? MediumData : HardData;
     let selectRandomIdx = Math.floor(Math.random() * randomData.length);
     for (let i = 0; i < randomData[selectRandomIdx].length; i++) {
       V[randomData[selectRandomIdx][i][0]][
         randomData[selectRandomIdx][i][1]
       ] = 1;
     }
+    V[randomData[selectRandomIdx][0][0]][randomData[selectRandomIdx][0][1]] =
+      "🐰";
+    V[randomData[selectRandomIdx][randomData[selectRandomIdx].length - 1][0]][
+      randomData[selectRandomIdx][randomData[selectRandomIdx].length - 1][1]
+    ] = "🚩";
 
     return V;
   }

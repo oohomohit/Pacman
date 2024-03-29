@@ -37,7 +37,7 @@ function FinishScreen() {
     }
   }
   let points;
-  if (Ans && row === mazeSize - 1 && col === mazeSize - 1) {
+  if (Ans && currentMaze[row][col] === "🚩") {
     points = secondsRemaining * 4;
   } else {
     points = 0;
