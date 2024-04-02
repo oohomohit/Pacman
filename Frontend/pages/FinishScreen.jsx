@@ -9,11 +9,13 @@ function FinishScreen() {
     currentMaze,
     mazeSize,
     setSecondsRemaining,
+    setUserName,
+    setEnroll,
     setStatus,
     setMazeSize,
   } = useGame();
-  let Ans = true;
 
+  let Ans = true;
   let row = currentMaze.Start[0];
   let col = currentMaze.Start[1];
   for (let i = 0; i < inputString.length; i++) {
@@ -59,6 +61,15 @@ function FinishScreen() {
     setSecondsRemaining(30);
     setStatus("loading");
     setMazeSize(5);
+    setEnroll("");
+    setUserName("");
+    navigate("/start");
+  }
+
+  function handleLogout() {
+    setSecondsRemaining(30);
+    setStatus("loading");
+    setMazeSize(5);
     navigate("/");
   }
   return (
@@ -68,13 +79,31 @@ function FinishScreen() {
       </p>
       {points === 0 && (
         <>
-          <p>Your Answer: {inputString} </p>
-          <p>Correct Answer: {currentMaze.Path}</p>
+          <h3>Your Answer: {inputString} </h3>
+          <h3>
+            <strong style={{ color: "green" }}>Correct Answer:</strong>{" "}
+            {currentMaze.Path}
+          </h3>
         </>
       )}
-      <button className="btn btn-ui" onClick={handleRestart}>
-        Restart Game
-      </button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <button className="btn btn-ui" onClick={handleRestart}>
+          Restart Game
+        </button>
+        <button
+          style={{ marginLeft: "10px" }}
+          className="btn btn-ui"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      </div>
     </>
   );
 }

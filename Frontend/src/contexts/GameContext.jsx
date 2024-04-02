@@ -7,6 +7,9 @@ const GameContext = createContext();
 function GameProvider({ children }) {
   const [status, setStatus] = useState("loading");
   const [secondsRemaining, setSecondsRemaining] = useState(30);
+  const [userName, setUserName] = useState("");
+  const [enroll, setEnroll] = useState("");
+  const [phone, setPhone] = useState("");
   const [highScore, setHighScore] = useState(0);
   const [mazeSize, setMazeSize] = useState(5);
   const [inputString, setInputString] = useState("");
@@ -50,6 +53,12 @@ function GameProvider({ children }) {
         mazeSize,
         leaderBoard,
         status,
+        userName,
+        enroll,
+        phone,
+        setPhone,
+        setEnroll,
+        setUserName,
         MazeInput,
         setHighScore,
         setStatus,
