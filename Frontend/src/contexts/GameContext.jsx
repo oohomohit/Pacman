@@ -1,4 +1,12 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
+import { EasyData } from "../data/EasyData";
+import { MediumData } from "../data/MediumData";
+import { HardData } from "../data/HardData";
 const GameContext = createContext();
 
 const initialState = {
@@ -40,57 +48,12 @@ function GameProvider({ children }) {
     { secondsRemaining, currentMaze, points, highScore, status },
     dispatch,
   ] = useReducer(reducer, initialState);
-  const [mazeSize, setMazeSize] = useState(4);
+  const [mazeSize, setMazeSize] = useState(5);
   const [inputString, setInputString] = useState("");
-  const [difficulty, setDifficulty] = useState(4);
+  const [difficulty, setDifficulty] = useState(5);
+  const [leaderBoard, setLeaderBoard] = useState({});
 
   function MazeInput() {
-    const EasyData = [
-      [
-        [0, 0],
-        [1, 2],
-        [1, 1],
-        [1, 0],
-        [1, 3],
-        [2, 2],
-        [3, 2],
-        [3, 3],
-      ],
-      [
-        [0, 0],
-        [1, 3],
-        [1, 1],
-        [1, 0],
-        [1, 3],
-        [2, 1],
-        [0, 2],
-        [3, 3],
-        [1, 2],
-        [2, 3],
-      ],
-    ];
-
-    const MediumData = [
-      [
-        [0, 0],
-        [4, 4],
-      ],
-      [
-        [1, 1],
-        [3, 3],
-      ],
-    ];
-    const HardData = [
-      [
-        [0, 0],
-        [5, 5],
-      ],
-      [
-        [1, 1],
-        [4, 4],
-      ],
-    ];
-
     const V = [];
 
     for (let i = 0; i < mazeSize; i++) {
@@ -98,19 +61,21 @@ function GameProvider({ children }) {
       V.push(row);
     }
     const randomData =
-      difficulty === 4 ? EasyData : difficulty === 5 ? MediumData : HardData;
-    let selectRandomIdx = Math.floor(Math.random() * randomData.length);
-    for (let i = 0; i < randomData[selectRandomIdx].length; i++) {
-      V[randomData[selectRandomIdx][i][0]][
-        randomData[selectRandomIdx][i][1]
+      difficulty === 5
+        ? EasyData
+        : difficulty === 7
+        ? MediumData
+        : difficulty === 9
+        ? HardData
+        : "";
+    let Idx = Math.floor(Math.random() * randomData.length);
+    for (let i = 0; i < randomData[Idx].Coordinates.length; i++) {
+      V[randomData[Idx].Coordinates[i][0]][
+        randomData[Idx].Coordinates[i][1]
       ] = 1;
     }
-    V[randomData[selectRandomIdx][0][0]][randomData[selectRandomIdx][0][1]] =
-      "🐰";
-    V[randomData[selectRandomIdx][randomData[selectRandomIdx].length - 1][0]][
-      randomData[selectRandomIdx][randomData[selectRandomIdx].length - 1][1]
-    ] = "🚩";
-
+    V[randomData[Idx].Start[0]][randomData[Idx].Start[1]] = "🐰";
+    V[randomData[Idx].End[0]][randomData[Idx].End[1]] = "🚩";
     return V;
   }
 
@@ -125,6 +90,8 @@ function GameProvider({ children }) {
         inputString,
         mazeSize,
         difficulty,
+        leaderBoard,
+        setLeaderBoard,
         setMazeSize,
         setDifficulty,
         setInputString,

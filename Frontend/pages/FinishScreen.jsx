@@ -10,6 +10,7 @@ function FinishScreen() {
     mazeSize,
   } = useGame();
   let Ans = true;
+  console.log(currentMaze);
   let row = 0,
     col = 0;
   for (let i = 0; i < inputString.length; i++) {

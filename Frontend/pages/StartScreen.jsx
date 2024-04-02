@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../src/components/Header";
 import Rules from "../src/components/Rules";
 import { useGame } from "../src/contexts/GameContext";
@@ -7,13 +7,13 @@ import LeaderBoard from "../src/components/LeaderBoard";
 function StartScreen() {
   const { dispatch, MazeInput, setDifficulty, difficulty, setMazeSize } =
     useGame();
-  const V = MazeInput();
   const [userName, setUserName] = useState("");
   const [enrollment, setEnrollment] = useState("");
-
-  function handleDifficultyLevel(e) {
+  let V = MazeInput();
+  async function handleDifficultyLevel(e) {
     setDifficulty(Number(e.target.value));
     setMazeSize(Number(e.target.value));
+    V = MazeInput();
   }
 
   return (
@@ -58,9 +58,9 @@ function StartScreen() {
             value={difficulty}
             onChange={handleDifficultyLevel}
           >
-            <option value="4">Easy</option>
-            <option value="5">Medium</option>
-            <option value="6">Hard</option>
+            <option value="5">Easy</option>
+            <option value="7">Medium</option>
+            <option value="9">Hard</option>
           </select>
         </div>
 

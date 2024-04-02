@@ -1,3 +1,5 @@
+import { useGame } from "../contexts/GameContext";
+
 const EasyDummydata = [
   {
     username: "Vidya Sagar",
@@ -51,6 +53,7 @@ const HardDummydata = [
 ];
 
 function LeaderBoard() {
+  const { LeaderBoard } = useGame();
   EasyDummydata.sort((a, b) => {
     return b.score - a.score;
   });
@@ -68,11 +71,7 @@ function LeaderBoard() {
         <ol>
           Easy List:
           {EasyDummydata.slice(0, 3).map((obj, idx) => {
-            return (
-              <li>
-                {obj.username} {obj.score}
-              </li>
-            );
+            return <li>{`${obj.username} -> ${obj.score}`}</li>;
           })}
         </ol>
       </div>
@@ -80,11 +79,7 @@ function LeaderBoard() {
         <ol>
           Medium List:
           {MediumDummydata.slice(0, 3).map((obj, idx) => {
-            return (
-              <li>
-                {obj.username} {obj.score}
-              </li>
-            );
+            return <li>{`${obj.username} -> ${obj.score}`}</li>;
           })}
         </ol>
       </div>
@@ -92,11 +87,7 @@ function LeaderBoard() {
         <ol>
           Hard List:
           {HardDummydata.slice(0, 3).map((obj, idx) => {
-            return (
-              <li>
-                {obj.username} {obj.score}
-              </li>
-            );
+            return <li>{`${obj.username} -> ${obj.score}`}</li>;
           })}
         </ol>
       </div>

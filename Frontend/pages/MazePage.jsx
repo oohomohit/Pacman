@@ -32,7 +32,7 @@ function MazePage() {
               style={{ fontSize: "30px" }}
               type="text"
               placeholder="Your Answer"
-              onChange={(e) => setInputString(e.target.value)}
+              onChange={(e) => setInputString(e.target.value.toUpperCase())}
               disabled={status !== "ready"}
             />
           </form>
