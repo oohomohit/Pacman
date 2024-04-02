@@ -2,21 +2,22 @@ import { useEffect } from "react";
 import { useGame } from "../contexts/GameContext";
 
 function Timer() {
-  const { dispatch, secondsRemaining, status } = useGame();
+  const { secondsRemaining, setSecondsRemaining, status, setStatus } =
+    useGame();
   const mins = Math.floor(secondsRemaining / 60);
   const seconds = secondsRemaining % 60;
   useEffect(
     function () {
       if (status === "ready") return;
       if (secondsRemaining === 0) {
-        dispatch({ type: "ready" });
+        setStatus("ready");
       }
       const id = setInterval(function () {
-        dispatch({ type: "tick" });
+        setSecondsRemaining((cur) => cur - 1);
       }, 1000);
       return () => clearInterval(id);
     },
-    [dispatch, status, secondsRemaining]
+    [status, secondsRemaining, setStatus, setSecondsRemaining]
   );
 
   return (

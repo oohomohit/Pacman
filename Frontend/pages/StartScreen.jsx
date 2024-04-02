@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react";
-import Header from "../src/components/Header";
+import { useState } from "react";
 import Rules from "../src/components/Rules";
 import { useGame } from "../src/contexts/GameContext";
 import LeaderBoard from "../src/components/LeaderBoard";
+import { useNavigate } from "react-router-dom";
 
 function StartScreen() {
-  const { dispatch, MazeInput, setDifficulty, difficulty, setMazeSize } =
+  const { difficulty, setMazeSize, MazeInput, setCurrentMaze, setStatus } =
     useGame();
   const [userName, setUserName] = useState("");
   const [enrollment, setEnrollment] = useState("");
-  let V = MazeInput();
-  async function handleDifficultyLevel(e) {
-    setDifficulty(Number(e.target.value));
+  const navigate = useNavigate();
+  function handleDifficultyLevel(e) {
     setMazeSize(Number(e.target.value));
-    V = MazeInput();
+  }
+  function handleClick() {
+    const V = MazeInput();
+    setCurrentMaze(V);
+    setStatus("active");
+    navigate("/mazepage");
   }
 
   return (
@@ -67,7 +71,7 @@ function StartScreen() {
         <button
           className="btn btn-ui"
           style={{ marginTop: "100px" }}
-          onClick={() => dispatch({ type: "start", payload: V })}
+          onClick={handleClick}
         >
           Let's Start
         </button>

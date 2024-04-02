@@ -1,18 +1,16 @@
 import StartScreen from "../pages/StartScreen";
 import MazePage from "../pages/MazePage";
-import { useGame } from "./contexts/GameContext";
 import FinishScreen from "../pages/FinishScreen";
-import Error from "./components/Error";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const { status } = useGame();
   return (
     <div className="app">
-      {status === "error" && <Error msg={"Something Unexpected happen"} />}
-      {status === "loading" && <StartScreen />}
-      {status === "active" && <MazePage />}
-      {status === "ready" && <MazePage />}
-      {status === "submit" && <FinishScreen />}
+      <Routes>
+        <Route path="/" element={<StartScreen />} />
+        <Route path="mazepage" element={<MazePage />} />
+        <Route path="result" element={<FinishScreen />} />
+      </Routes>
     </div>
   );
 }

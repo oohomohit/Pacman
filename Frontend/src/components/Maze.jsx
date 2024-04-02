@@ -6,7 +6,7 @@ function Maze() {
   return (
     <div style={{ opacity: status === "ready" ? "0.06" : "" }}>
       <ul style={{ listStyleType: "none" }} className={styles.container}>
-        {currentMaze.map((row, rowIndex) => (
+        {currentMaze.matrix.map((row, rowIndex) => (
           <li key={rowIndex}>
             {row.map((cell, colIndex) => (
               <span className={styles.item} key={colIndex}>
