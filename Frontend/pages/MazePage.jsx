@@ -13,7 +13,19 @@ function MazePage() {
     setInputString("");
   }, []);
   return (
-    <div className="mazePage">
+    <div
+      style={{
+        backgroundColor: "rgba(245,187,42, 0.9)",
+        borderRadius: "10px",
+        padding: "10px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "1px",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      className="mazePage"
+    >
       <Header />
       <div
         style={{
@@ -21,22 +33,24 @@ function MazePage() {
         }}
       >
         <Timer />
-        <SubmitButton />
       </div>
       <Main>
         <Maze />
-        <Footer>
-          <form>
-            <input
-              value={inputString}
-              style={{ fontSize: "30px" }}
-              type="text"
-              placeholder="Your Answer"
-              onChange={(e) => setInputString(e.target.value.toUpperCase())}
-              disabled={status !== "ready"}
-            />
-          </form>
-        </Footer>
+        <div style={{display : "flex", flexDirection : "row", alignItems : "center", gap : "20px", width : "100%", justifyContent : "center"}}>
+          <Footer>
+            <form>
+              <input
+                value={inputString}
+                style={{ fontSize: "20px", width : "400px", padding :"10px", borderRadius : "5px", border : "1px solid #ccc", boxShadow : "0 2px 4px rgba(0, 0, 0, 0.1)"}}
+                type="text"
+                placeholder="Your Answer"
+                onChange={(e) => setInputString(e.target.value.toUpperCase())}
+                disabled={status !== "ready"}
+              />
+            </form>
+          </Footer>
+          <SubmitButton />
+        </div>
       </Main>
     </div>
   );

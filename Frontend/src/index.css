@@ -6,7 +6,14 @@
 
   --color-theme: #1098ad;
   --color-accent: #ffa94d;
+  --color-font-color: white;
+
+
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Codystar&display=swap");
 
@@ -14,6 +21,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* background-color: #010658; */
 }
 
 html {
@@ -25,8 +33,16 @@ html {
 body {
   min-height: 100vh;
   color: var(--color-light);
-  background-color: var(--color-darkest);
+  /* background-color: var(--color-darkest); */
+    /* background-color: #010658; */
+
   padding: 3.2rem;
+  background: #010658; 
+  background-image: url('../public/dcc.png');
+  background-repeat: repeat;
+  background-size: 200px;
+  /* transform: rotate(-45deg); */
+  font-size: large;
 }
 
 .app {
@@ -126,18 +142,20 @@ progress {
 .btn {
   display: block;
   font-family: inherit;
-  color: inherit;
+  color: white;
   font-size: 2rem;
   border: 2px solid var(--color-dark);
-  background-color: var(--color-dark);
+  /* background-color: var(--color-dark); */
+  background-color: #b42621;
   padding: 1.2rem 2.4rem;
   cursor: pointer;
-  border-radius: 100px;
+  border-radius: 1.5rem;
   transition: 0.3s;
+  border: none;
 }
 
 .btn:not([disabled]):hover {
-  background-color: var(--color-darkest);
+  background-color: green;
 }
 
 .btn-option:not([disabled]):hover {
@@ -149,7 +167,7 @@ progress {
 }
 
 .btn-ui {
-  float: right;
+  /* float: right; */
 }
 
 .options {
@@ -217,9 +235,14 @@ progress {
   float: left;
   font-size: 1.8rem;
   color: var(--color-medium);
+  background-color: var(--color-dark);
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+  width: 150px;
   border: 2px solid var(--color-dark);
   padding: 1.35rem 2.8rem;
-  border-radius: 100px;
+  border-radius: 10px;
 }
 
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
@@ -231,7 +254,7 @@ progress {
     radial-gradient(circle closest-side, currentColor 90%, #0000) 100% 50%;
   background-size: calc(100% / 3) 12px;
   background-repeat: no-repeat;
-  animation: loader 1s infinite linear;
+  an-tion: loader 1s infinite linear;
 }
 
 @keyframes loader {
@@ -267,4 +290,23 @@ progress {
 .counter * {
   font-size: inherit;
   padding: 0.8rem;
+}
+
+.loginPage-imageIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:2rem;
+}
+.form-label{
+  color:black;
+  margin-left: 5px;
+}
+
+.buttonDiv{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+
 }

@@ -65,33 +65,75 @@ function LeaderBoard() {
   });
 
   return (
-    <>
-      <h1>LeaderBoard</h1>
-      <div>
-        <ol>
-          Easy List:
-          {EasyDummydata.slice(0, 3).map((obj, idx) => {
-            return <li>{`${obj.username} -> ${obj.score}`}</li>;
-          })}
-        </ol>
-      </div>
-      <div>
-        <ol>
-          Medium List:
-          {MediumDummydata.slice(0, 3).map((obj, idx) => {
-            return <li>{`${obj.username} -> ${obj.score}`}</li>;
-          })}
-        </ol>
-      </div>
-      <div>
-        <ol>
-          Hard List:
-          {HardDummydata.slice(0, 3).map((obj, idx) => {
-            return <li>{`${obj.username} -> ${obj.score}`}</li>;
-          })}
-        </ol>
-      </div>
-    </>
+    <div>
+      <h1 style={{width : "100%", display: "flex", justifyContent: "center"}}>Leaderboard</h1>
+      <div style={{ display: "flex", gap: "100px" }}>
+  <div >
+    <div style={{fontSize : "2rem", fontWeight : "bold"}}>Easy Level</div>
+    <table style={{ borderCollapse: "separate", borderSpacing: "10px" }}>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {EasyDummydata.slice(0, 3).map((obj, idx) => (
+          <tr key={idx}>
+            <td>{idx + 1}</td>
+            <td>{obj.username}</td>
+            <td>{obj.score}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div >
+    <div style={{fontSize : "2rem", fontWeight : "bold"}}>Medium Level</div>
+    <table style={{ borderCollapse: "separate", borderSpacing: "10px" }}>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {MediumDummydata.slice(0, 3).map((obj, idx) => (
+          <tr key={idx}>
+            <td>{idx + 1}</td>
+            <td>{obj.username}</td>
+            <td>{obj.score}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div >
+    <div style={{fontSize : "2rem", fontWeight : "bold"}}>Hard Level</div>
+    <table style={{ borderCollapse: "separate", borderSpacing: "10px" }}>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {HardDummydata.slice(0, 3).map((obj, idx) => (
+          <tr key={idx}>
+            <td>{idx + 1}</td>
+            <td>{obj.username}</td>
+            <td>{obj.score}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+    </div>
   );
 }
 

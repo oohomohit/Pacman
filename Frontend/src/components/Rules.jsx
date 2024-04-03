@@ -1,8 +1,8 @@
 function Rules() {
   return (
-    <div>
+    <div style={{width : "100%"}}>
+        <h1 style={{width : "100%", display: "flex", justifyContent: "center"}}>Rules</h1>
       <ul>
-        <h2>Rules:</h2>
         <li>
           <h4>Remember the path as string in the form of U, R, L, D.</h4>
         </li>
