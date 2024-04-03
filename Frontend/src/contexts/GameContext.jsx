@@ -6,7 +6,8 @@ const GameContext = createContext();
 
 function GameProvider({ children }) {
   const [status, setStatus] = useState("loading");
-  const [secondsRemaining, setSecondsRemaining] = useState(30);
+  const [secondsRemaining, setSecondsRemaining] = useState(29);
+  const [miliSecondsRemaining, setMiliSecondsRemaining] = useState(1000);
   const [userName, setUserName] = useState("");
   const [enroll, setEnroll] = useState("");
   const [phone, setPhone] = useState("");
@@ -47,6 +48,7 @@ function GameProvider({ children }) {
     <GameContext.Provider
       value={{
         secondsRemaining,
+        miliSecondsRemaining,
         currentMaze,
         highScore,
         inputString,
@@ -63,6 +65,7 @@ function GameProvider({ children }) {
         setHighScore,
         setStatus,
         setSecondsRemaining,
+        setMiliSecondsRemaining,
         setCurrentMaze,
         setLeaderBoard,
         setMazeSize,

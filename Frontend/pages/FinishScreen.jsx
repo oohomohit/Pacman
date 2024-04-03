@@ -5,10 +5,12 @@ function FinishScreen() {
   const navigate = useNavigate();
   const {
     secondsRemaining,
+    miliSecondsRemaining,
     inputString,
     currentMaze,
     mazeSize,
     setSecondsRemaining,
+    setMiliSecondsRemaining,
     setUserName,
     setEnroll,
     setStatus,
@@ -44,7 +46,10 @@ function FinishScreen() {
   }
   let points;
   if (Ans && currentMaze.matrix[row][col] === "🚩") {
-    points = secondsRemaining * 4;
+   console.log("points -> ", "yes correct hai ");
+
+    points = secondsRemaining * 1000;
+    points+=(miliSecondsRemaining);
   } else {
     points = 0;
   }
@@ -73,9 +78,17 @@ function FinishScreen() {
     navigate("/");
   }
   return (
-    <>
+    <div style={{
+      marginTop:"12rem",
+      boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
+      backgroundColor: "#f5bb2a",
+      border: "1px solid #ccc",
+      width:"50%",
+      minHeight:"300px",
+      borderRadius:"5px",
+    }}>
       <p className="result">
-        {emoji} You have scored <strong>{points}</strong> out of 100
+        {emoji} You have scored <strong>{points}</strong> out of 30000
       </p>
       {points === 0 && (
         <>
@@ -90,7 +103,9 @@ function FinishScreen() {
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "center",
+          gap: "10px",
+          marginTop: "10rem",
         }}
       >
         <button className="btn btn-ui" onClick={handleRestart}>
@@ -104,7 +119,7 @@ function FinishScreen() {
           Logout
         </button>
       </div>
-    </>
+    </div>
   );
 }
 export default FinishScreen;

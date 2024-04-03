@@ -13,7 +13,7 @@ function Maze() {
               className={styles.item}
               key={colIndex}
               style={{
-                background: cell === 1 ? 'red' : cell === 0 ? 'blue' : 'white',
+                background: cell === 1 ? '#A0153E' : cell === 0 ? '#1A1E68' : '#D6D6D6',
                 // display: 'inline-flex',
                 // alignItems: 'center',
                 // justifyContent: 'center',
@@ -23,6 +23,7 @@ function Maze() {
               }}
             >
               {cell === 1 ? '🐾' : cell === 0 ? '‎ ' : cell}
+              {/* {cell === 1 ? '1' : cell === 0 ? '0 ' : cell} */}
               {/* {cell} */}
             </span>
             

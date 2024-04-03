@@ -201,7 +201,7 @@ progress {
 .result {
   background-color: var(--color-theme);
   color: var(--color-light);
-  border-radius: 100px;
+  /* border-radius: 100px; */
   text-align: center;
   padding: 2rem 0;
   font-size: 2rem;
