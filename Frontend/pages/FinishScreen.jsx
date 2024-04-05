@@ -20,7 +20,25 @@ function FinishScreen() {
   let Ans = true;
   let row = currentMaze.Start[0];
   let col = currentMaze.Start[1];
+  let points=0;
+  console.log("userGame ", useGame());
   for (let i = 0; i < inputString.length; i++) {
+    if (
+      row < 0 ||
+      col < 0 ||
+      row >= mazeSize ||
+      col >= mazeSize ||
+      currentMaze.matrix[row][col] === 0
+    ) {
+      Ans = false;
+      break;
+    }
+
+    if (inputString[i] !== 'U' && inputString[i] !== 'D' && inputString[i] !== 'L' && inputString[i] !== 'R') {
+      Ans = false;
+      break;
+    }
+
     if (inputString[i] === "U") {
       row--;
     }
@@ -44,9 +62,9 @@ function FinishScreen() {
       break;
     }
   }
-  let points;
+  
   if (Ans && currentMaze.matrix[row][col] === "🚩") {
-   console.log("points -> ", "yes correct hai ");
+    console.log("points -> ", "yes correct hai ");
 
     points = secondsRemaining * 1000;
     points+=(miliSecondsRemaining);
@@ -79,13 +97,13 @@ function FinishScreen() {
   }
   return (
     <div style={{
-      marginTop:"12rem",
+      marginTop: "12rem",
       boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
       backgroundColor: "#f5bb2a",
       border: "1px solid #ccc",
-      width:"50%",
-      minHeight:"300px",
-      borderRadius:"5px",
+      width: "50%",
+      minHeight: "300px",
+      borderRadius: "5px",
     }}>
       <p className="result">
         {emoji} You have scored <strong>{points}</strong> out of 30000
