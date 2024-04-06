@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../src/contexts/GameContext";
+import Maze from "../src/components/Maze";
+import axios from "axios";
+import { useEffect, useState } from "react";
+// import { set } from "mongoose";
 
 function FinishScreen() {
   const navigate = useNavigate();
@@ -9,6 +13,8 @@ function FinishScreen() {
     inputString,
     currentMaze,
     mazeSize,
+    difficulty,
+    setDifficulty,
     setSecondsRemaining,
     setMiliSecondsRemaining,
     setUserName,
@@ -17,11 +23,49 @@ function FinishScreen() {
     setMazeSize,
   } = useGame();
 
+  const [uss, setUss] = useState(null);
+  // const [points, setPoints] = useState(0);
+
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   console.log("token in fron  -> ", token);
+  //   axios.post("http://localhost:5000/me", {
+  //     token: token,
+  //   }).then((res) => {
+  //     console.log("->** ", res);
+  //     setUss(res.data.user);
+  //     console.log("uss ", uss);
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   });
+  // }, []);
+
+
+  // const handleSave = () => {
+  //   const id = uss._id;
+  //   axios.post('http://localhost:5000/update', {
+  //     difficulty: difficulty,
+  //     points: points,
+  //     id: id,
+  //   }).then((res) => {
+  //     console.log("updated data ", res);
+  //   }).catch((err) => {
+  //     console.log("err at update ", err);
+
+  //   });
+
+  // };
+
+
+
+
   let Ans = true;
   let row = currentMaze.Start[0];
   let col = currentMaze.Start[1];
-  let points=0;
-  console.log("userGame ", useGame());
+
+  let points = 0;
+  // console.log("userGame ", useGame());
   for (let i = 0; i < inputString.length; i++) {
     if (
       row < 0 ||
@@ -62,15 +106,23 @@ function FinishScreen() {
       break;
     }
   }
-  
+
+
+
+
+  let tmp=0;
   if (Ans && currentMaze.matrix[row][col] === "🚩") {
     console.log("points -> ", "yes correct hai ");
-
-    points = secondsRemaining * 1000;
-    points+=(miliSecondsRemaining);
+     points+= secondsRemaining * 1000;
+    points += (miliSecondsRemaining);
+    // setPoints(tmp);
   } else {
-    points = 0;
+    // setPoints(0);
+    points=0;
   }
+
+
+  // setPoints(tmp);
   const percentage = points;
 
   let emoji;
@@ -108,7 +160,7 @@ function FinishScreen() {
       <p className="result">
         {emoji} You have scored <strong>{points}</strong> out of 30000
       </p>
-      {points === 0 && (
+      {1 && (
         <>
           <h3>Your Answer: {inputString} </h3>
           <h3>
@@ -136,7 +188,15 @@ function FinishScreen() {
         >
           Logout
         </button>
+        {/* <button
+          style={{ marginLeft: "10px" }}
+          className="btn btn-ui"
+          onClick={handleSave}
+        >
+          Save Score
+        </button> */}
       </div>
+      <Maze />
     </div>
   );
 }

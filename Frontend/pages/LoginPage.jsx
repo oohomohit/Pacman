@@ -1,20 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGame } from "../src/contexts/GameContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function LoginPage() {
   const { userName, setUserName, enroll, setEnroll, phone, setPhone } =
     useGame();
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   axios.post("http://localhost:8000/loginUser", {
+  //     userName, enroll, phone
+  //   }).then((res) => {
+  //     console.log("->* ", res);
+  //   })
+  //     .catch((err) => { console.log(err) });
+  // }, []);
+
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    if(userName.trim() === "" || enroll.trim() === "" || phone.trim() === "") {
+    if (userName.trim() === "" || enroll.trim() === "" || phone.trim() === "") {
       alert("Please fill all the fields");
       return;
     }
-    
+    // axios.post("http://localhost:5000/login", {
+    //   userName, enroll, phone
+    // },
+    //   {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     withcredentials: true
+    //   },
 
-    navigate("start");
+    // ).then((res) => {
+    //   console.log("->* ", res);
+    //   localStorage.setItem("token", res.data.data.accessToken);
+    //   navigate("start");
+    // }).catch((err) => {
+    //   navigate('/')
+    // });
+
+     navigate("start");
   }
 
   return (
