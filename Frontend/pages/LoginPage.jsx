@@ -1,14 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGame } from "../src/contexts/GameContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function LoginPage() {
   const { userName, setUserName, enroll, setEnroll, phone, setPhone } =
     useGame();
   const navigate = useNavigate();
-  function handleClick(e) {
+
+  // useEffect(() => {
+  //   axios.post("http://localhost:8000/loginUser", {
+  //     userName, enroll, phone
+  //   }).then((res) => {
+  //     console.log("->* ", res);
+  //   })
+  //     .catch((err) => { console.log(err) });
+  // }, []);
+
+
+
+  function handleSubmit(e) {
     e.preventDefault();
-    navigate("start");
+    if (userName.trim() === "" || enroll.trim() === "" || phone.trim() === "") {
+      alert("Please fill all the fields");
+      return;
+    }
+    // axios.post("http://localhost:5000/login", {
+    //   userName, enroll, phone
+    // },
+    //   {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     withcredentials: true
+    //   },
+
+    // ).then((res) => {
+    //   console.log("->* ", res);
+    //   localStorage.setItem("token", res.data.data.accessToken);
+    //   navigate("start");
+    // }).catch((err) => {
+    //   navigate('/')
+    // });
+
+     navigate("start");
   }
 
   return (
@@ -22,7 +57,7 @@ function LoginPage() {
                 borderRadius: "1rem",
                 maxWidth: "800px",
                 margin: "0 auto",
-                backgroundColor:"#f5bb2a",
+                backgroundColor: "#f5bb2a",
               }}
             >
               <div className="row">
@@ -36,7 +71,7 @@ function LoginPage() {
                 </div>
                 <div className="w-100  col-md-6 col-lg-7 d-flex align-items-center  ">
                   <div className="card-body p-4 p-lg-5 text-black">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                       <div className="d-flex align-items-center mb-3 pb-1">
                         <i
                           className="fas fa-cubes fa-2x me-3"
@@ -47,9 +82,9 @@ function LoginPage() {
                       <h5
                         // className="fw-normal mb-3 pb-3"
                         className=" w-full text-center"
-                        style={{ fontSize: "2.5rem"}}
+                        style={{ fontSize: "2.5rem" }}
 
-                        // style={{ letterSpacing: "1px" }}
+                      // style={{ letterSpacing: "1px" }}
                       >
                         Enter Details to Play Game
                         {/* <strong className=" flex justify-center item-center" >Enter Details to Play Game</strong> */}
@@ -62,6 +97,7 @@ function LoginPage() {
                       <div className="form-outline mb-4">
                         <input
                           type="text"
+                          required
                           id="form2Example17"
                           className="form-control form-control-lg "
                           value={userName}
@@ -80,6 +116,7 @@ function LoginPage() {
                         <input
                           type="text"
                           id="form2Example27"
+                          required
                           className="form-control form-control-lg"
                           placeholder="Your Enrollment No."
                           value={enroll}
@@ -95,6 +132,7 @@ function LoginPage() {
                       <div className="form-outline mb-4">
                         <input
                           type="text"
+                          required
                           id="form2Example17"
                           className="form-control form-control-lg"
                           value={phone}
@@ -109,7 +147,7 @@ function LoginPage() {
                         <button
                           className="btn  btn-dark btn-lg btn-block"
                           type="submit"
-                          onClick={handleClick}
+                          onClick={handleSubmit}
                         >
                           Enter
                         </button>

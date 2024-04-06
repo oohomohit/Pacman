@@ -3,11 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useGame } from "../contexts/GameContext";
 
 export const DifficultyLevel = () => {
-  const { difficulty, setMazeSize, MazeInput, setCurrentMaze, setStatus } =
+  const { difficulty, setMazeSize, MazeInput, setCurrentMaze, setStatus ,setDifficulty} =
     useGame();
+
+
+
   const navigate = useNavigate();
   function handleDifficultyLevel(e) {
     setMazeSize(Number(e.target.value));
+    setDifficulty(Number(e.target.value));
   }
   function handleClick() {
     const V = MazeInput();

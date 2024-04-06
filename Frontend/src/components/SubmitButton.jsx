@@ -6,6 +6,7 @@ function SubmitButton() {
   const navigate = useNavigate();
 
   function handleSubmit() {
+    setStatus("loading")
     navigate("/result");
   }
 

@@ -16,6 +16,7 @@ function GameProvider({ children }) {
   const [inputString, setInputString] = useState("");
   const [leaderBoard, setLeaderBoard] = useState({});
   const [currentMaze, setCurrentMaze] = useState();
+  const[difficulty,setDifficulty]=useState(5);
 
   function MazeInput() {
     const V = [];
@@ -58,6 +59,8 @@ function GameProvider({ children }) {
         userName,
         enroll,
         phone,
+        difficulty,
+        setDifficulty,
         setPhone,
         setEnroll,
         setUserName,
