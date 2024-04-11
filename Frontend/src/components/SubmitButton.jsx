@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../contexts/GameContext";
 
-function SubmitButton() {
+function SubmitButton({handleSubmit}) {
   const { status, setStatus } = useGame();
   const navigate = useNavigate();
 
-  function handleSubmit() {
-    setStatus("loading")
-    navigate("/result");
-  }
+  // function handleSubmit() {
+  //   setStatus("loading")
+  //   navigate("/result");
+  // }
 
   return (
     <div>

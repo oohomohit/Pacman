@@ -8,14 +8,14 @@ function LoginPage() {
     useGame();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   axios.post("http://localhost:8000/loginUser", {
-  //     userName, enroll, phone
-  //   }).then((res) => {
-  //     console.log("->* ", res);
-  //   })
-  //     .catch((err) => { console.log(err) });
-  // }, []);
+  useEffect(() => {
+    axios.post("http://localhost:8000/loginUser", {
+      userName, enroll, phone
+    }).then((res) => {
+      console.log("->* ", res);
+    })
+      .catch((err) => { console.log(err) });
+  }, []);
 
 
 
@@ -25,25 +25,25 @@ function LoginPage() {
       alert("Please fill all the fields");
       return;
     }
-    // axios.post("http://localhost:5000/login", {
-    //   userName, enroll, phone
-    // },
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     withcredentials: true
-    //   },
+    axios.post("http://localhost:5000/login", {
+      userName, enroll, phone
+    },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withcredentials: true
+      },
 
-    // ).then((res) => {
-    //   console.log("->* ", res);
-    //   localStorage.setItem("token", res.data.data.accessToken);
-    //   navigate("start");
-    // }).catch((err) => {
-    //   navigate('/')
-    // });
+    ).then((res) => {
+      console.log("->* ", res);
+      localStorage.setItem("token", res.data.data.accessToken);
+      navigate("start");
+    }).catch((err) => {
+      navigate('/')
+    });
 
-     navigate("start");
+    //  navigate("start");
   }
 
   return (
