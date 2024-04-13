@@ -5,6 +5,7 @@ import {
     refreshAccessToken,
     getCurrentUser,
     updateData,
+    leaderboard,
 } from "./login.controller.js";
 import { logoutUser } from "./logout.controllers.js";
 import { verifyJWT } from "./AuthMiddleware.js";
@@ -22,6 +23,7 @@ router.route("/login").post(loginUser)
 router.route("/logout").post(verifyJWT, logoutUser)
 router.route("/me").post(getCurrentUser);
 router.route("/update").post(updateData);
+router.route('/leaderboard').get(leaderboard);
 router.route("/refresh-token").post(refreshAccessToken)
 
 
