@@ -103,7 +103,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     // }
 
     let user = await User.findOne({
-        $or: [{ userName }, { enroll }, { phone }]
+        $or: [ { enroll }, { phone }]
     })
 
     if (!user) {
@@ -168,7 +168,8 @@ export const loginUser = asyncHandler(async (req, res) => {
 
 export const logoutUser = asyncHandler(async (req, res) => {
     await User.findByIdAndUpdate(
-        req.user._id,
+        { _id: req.body.id},
+
         {
             $unset: {
                 refreshToken: 1 // this removes the field from document
@@ -314,15 +315,21 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
 
 
 export const updateData=asyncHandler(async(req,res)=>{
-    const difficulty=req.body.diffculty;
+    console.log("data from frontend ", req.body);
+    const difficulty=req.body.difficulty;
+    let type="easy";
+    if(difficulty===7)type="medium";
+    if(difficulty===9)type="hard";
+    
     const points=req.body.points;
-    const id=req.body.id;
-    console.log("diff at update ",difficulty);
+    const id=(req.body.id);
+    console.log("type",type);
+    // console.log("data from fronted to update  ",difficulty,points,id);
     const user=await User.findOneAndUpdate(
         {_id:id},
         {
             $set:{
-                difficulty:points,
+                [type]:points,
             }
         },
         {
@@ -333,5 +340,23 @@ export const updateData=asyncHandler(async(req,res)=>{
         throw new ApiError(500,"Something went wrong while updating the user data")
     }
     return res.status(200).json(new ApiResponse(200,user,"User data updated successfully"))
-})
+});
+
+export const leaderboard=asyncHandler(async(req,res)=>{
+    const users=await User.find().exec();
+    if(!users){
+        throw new ApiError(500,"Something went wrong while fetching the leaderboard")
+    }
+    console.log("users at leaderboard ", users);
+    let easyScore=[],mediumScore=[],hardScore=[];
+    users.forEach((user)=>{
+        easyScore.push({points:user.easy,username:user.userName,phone:user.phone,enroll:user.enroll});
+        mediumScore.push({points:user.medium,username:user.userName,phone:user.phone,enroll:user.enroll});
+        hardScore.push({points:user.hard,username:user.userName,phone:user.phone,enroll:user.enroll});
+    });
+    // easyScore.sort((a,b)=>a.points<=b.points);
+    // mediumScore.sort((a,b)=>a.points<=b.points);
+    // hardScore.sort((a,b)=>a.points<=b.points);
+    return res.status(200).json(new ApiResponse(200,{easyScore,mediumScore,hardScore},"Leaderboard fetched successfully"))
+});
 
